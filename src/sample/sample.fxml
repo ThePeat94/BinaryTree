@@ -13,14 +13,15 @@
    <bottom>
       <Pane prefHeight="100.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="tbValueToInsert" layoutX="14.0" layoutY="25.0" />
-            <TextField fx:id="tbValueToDelete" layoutX="14.0" layoutY="61.0" />
-            <Button fx:id="btnInsertValue" layoutX="171.0" layoutY="25.0" mnemonicParsing="false" onAction="#addNewNode" text="Einfügen" />
-            <Button fx:id="btnDeleteValue" layoutX="171.0" layoutY="61.0" mnemonicParsing="false" onAction="#deleteNode" text="Löschen" />
-            <Button layoutX="682.0" layoutY="25.0" mnemonicParsing="false" onAction="#loadTreeFromJson" text="Öffnen" />
-            <Button layoutX="682.0" layoutY="61.0" mnemonicParsing="false" onAction="#saveTree" text="Speichern" />
-            <Button layoutX="242.0" layoutY="61.0" mnemonicParsing="false" text="Komplett löschen" />
-            <TextField fx:id="tbBinaryTreeFileName" layoutX="475.0" layoutY="61.0" prefHeight="25.0" prefWidth="195.0" />
+            <TextField fx:id="tbValueToInsert" layoutX="14.0" layoutY="14.0" onKeyPressed="#insertValueKeyPressed" />
+            <TextField fx:id="tbValueToDelete" layoutX="14.0" layoutY="50.0" onKeyPressed="#deleteValueKeyPressed" />
+            <Button fx:id="btnInsertValue" layoutX="171.0" layoutY="14.0" mnemonicParsing="false" onAction="#addNewNode" text="Einfügen" />
+            <Button fx:id="btnDeleteValue" layoutX="171.0" layoutY="50.0" mnemonicParsing="false" onAction="#deleteNode" text="Löschen" />
+            <Button layoutX="682.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadTreeFromJson" text="Öffnen" />
+            <Button layoutX="682.0" layoutY="50.0" mnemonicParsing="false" onAction="#saveTree" text="Speichern" />
+            <Button layoutX="242.0" layoutY="50.0" mnemonicParsing="false" onAction="#deleteTree" text="Komplett löschen" />
+            <TextField fx:id="tbBinaryTreeFileName" layoutX="475.0" layoutY="50.0" prefHeight="25.0" prefWidth="195.0" />
+            <Label fx:id="tbStatusText" layoutY="86.0" prefHeight="17.0" prefWidth="800.0" />
          </children>
       </Pane>
    </bottom>

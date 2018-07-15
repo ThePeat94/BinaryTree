@@ -10,14 +10,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Verwaltet die Polynome.json <br>
+ * Verwaltung der JSON-Dateien. Wird genutzt, um aus JSONs Bäume zu parsen oder Bäume in JSONs zu speichern. <br>
  * Stellt Funktionen bereit, um die JSON auszulesen, zu leeren und um Elemente einzuspeichern.
  */
 public class JSONManager {
 
     /**
-     * Liest die JSON aus und gibt alle enthaltenen Polynome zurück
-     * @return Die gespeicherten Polynome in der JSON
+     * Liest die gegebene JSON Datei aus und parsed daraus den Baum
+     * @return Den in der JSON gespeicherten Datei
      */
     public static BinaryStringTree getTreeFromFile(String filePath) throws IOException
     {
@@ -38,9 +38,9 @@ public class JSONManager {
     }
 
     /**
-     * Speichert ein Polynom in der JSON
-     * @param treeToSave Das zu speichernde Polynom
-     * @param filePath Zieldateo
+     * Speichert einen Baum in einer JSON
+     * @param treeToSave Der zu speichernde Baum
+     * @param filePath Zieldatei
      */
     public static void saveTreeToJson(BinaryStringTree treeToSave, String filePath) throws IOException
     {
@@ -56,19 +56,6 @@ public class JSONManager {
         }
     }
 
-    /**
-     * Lösht die Inhalte der Polynome.json
-     * @throws IOException Bei Fehlern, die Lese-/Schreibeprozesse auf der Datei beenden oder unterbrechen
-     */
-    public static void clearFile(String filePath) throws IOException
-    {
-        File jsonFile = new File(filePath);
-        if(checkAndCreateFile(jsonFile))
-        {
-            FileWriter fileWriter = new FileWriter(jsonFile);
-            fileWriter.close();
-        }
-    }
 
     /**
      * Prüft ob die Datei existiert und erstellt sie ggf.

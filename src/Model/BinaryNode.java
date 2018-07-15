@@ -1,8 +1,23 @@
 package Model;
 
+/**
+ * Stellt einen Knoten in einem binären Baum dar
+ */
 public class BinaryNode {
+
+    /**
+     * Die enthaltenen Daten
+     */
     private String data;
+
+    /**
+     * Linker Knoten
+     */
     private BinaryNode leftBinaryNode;
+
+    /**
+     * Rechter Knoten
+     */
     private BinaryNode rightBinaryNode;
 
     public BinaryNode(String data) {
@@ -35,6 +50,11 @@ public class BinaryNode {
         this.leftBinaryNode = leftBinaryNode;
     }
 
+    /**
+     * Fügt einen neuen Knoten mit dem gegebenen Wert an den nächsten freien Knoten an
+     * @param nodeValue
+     * @return
+     */
     public boolean addNode(String nodeValue)
     {
         if(nodeValue.equals(data))
@@ -68,6 +88,10 @@ public class BinaryNode {
         return false;
     }
 
+    /**
+     * Ist der gegebene Knoten ein Blatt (hat also keine Kinder)?
+     * @return
+     */
     public boolean isLeaf()
     {
         return leftBinaryNode == null && rightBinaryNode == null;
