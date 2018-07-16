@@ -52,8 +52,8 @@ public class BinaryNode {
 
     /**
      * Fügt einen neuen Knoten mit dem gegebenen Wert an den nächsten freien Knoten an
-     * @param nodeValue
-     * @return
+     * @param nodeValue Der Wert des neuen Knoten
+     * @return true, wenn der Wert hinzugefügt werden konnte, false wenn nicht
      */
     public boolean addNode(String nodeValue)
     {
@@ -90,7 +90,7 @@ public class BinaryNode {
 
     /**
      * Ist der gegebene Knoten ein Blatt (hat also keine Kinder)?
-     * @return
+     * @return true, wenn der Knoten keine Kinder hat, false wenn mind. 1 Kind vorhanden ist
      */
     public boolean isLeaf()
     {

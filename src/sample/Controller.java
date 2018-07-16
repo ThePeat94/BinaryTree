@@ -221,7 +221,7 @@ public class Controller {
 
                 // Speichern des Baums im current working Directory
                 JSONManager.saveTreeToJson(bst, fileName);
-                tbStatusText.setText("Baum gespeichert unter: " + System.getProperty("user.dir")+fileName);
+                tbStatusText.setText("Baum gespeichert unter: " + System.getProperty("user.dir")+"\\"+fileName);
             }
             else
             {

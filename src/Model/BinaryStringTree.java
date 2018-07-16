@@ -4,19 +4,7 @@ import javax.xml.soap.Node;
 
 public class BinaryStringTree
 {
-    /**
-     * 1. leeren Baum erzeugen
-     * 2. Knoten hinzufügen
-     * 3. Baum anzeigen (alphanumerisch als Werteliste oder grafisch im Dialogfenster)
-     * 4. Knoten löschen
-     * 5. gesamten Baum löschen
-     * 6. Baum in externe Datei speichern (ASCII oder binär)
-     * 7. Baum aus externer Datei lesen (ASCII oder binär)
-     */
-
-
     private BinaryNode root;
-
 
     public BinaryStringTree()
     {
@@ -47,6 +35,7 @@ public class BinaryStringTree
 
         do
         {
+            // Knoten mit den Daten gefunden
             if(currentBinaryNode.getData().equals(valueToDelete))
             {
                 binaryNodeToDelete = currentBinaryNode;
@@ -54,30 +43,38 @@ public class BinaryStringTree
             }
 
             parentBinaryNode = currentBinaryNode;
+            // Wert ist kleiner -> Links runter
             if(valueToDelete.compareTo(currentBinaryNode.getData()) < 0)
             {
                 currentBinaryNode = currentBinaryNode.getLeftBinaryNode();
             }
+            // Wert ist größer -> Rechts runter
             else if(valueToDelete.compareTo(currentBinaryNode.getData()) > 0)
             {
                 currentBinaryNode = currentBinaryNode.getRightBinaryNode();
             }
         } while(!currentBinaryNode.isLeaf());
 
-        if(currentBinaryNode.getData().equals(valueToDelete))
-        {
-            binaryNodeToDelete = currentBinaryNode;
-        }
-
+        // Nichts gefunden, abbrechen
         if(binaryNodeToDelete == null)
         {
             return false;
         }
 
+        // Wenn zuvor keiner gefunden wurde, ist der letzte geprüfte Knoten evtl. der zu löschende
+        if(currentBinaryNode.getData().equals(valueToDelete))
+        {
+            binaryNodeToDelete = currentBinaryNode;
+        }
+
         // Der zu löschende Knoten ist ein Blatt -> hat keine Kinder, kann einfach so gelöscht werden
         if(binaryNodeToDelete.isLeaf())
         {
-            if(parentBinaryNode.getRightBinaryNode() == binaryNodeToDelete)
+            if(binaryNodeToDelete == root)
+            {
+                root = null;
+            }
+            else if(parentBinaryNode.getRightBinaryNode() == binaryNodeToDelete)
             {
                 parentBinaryNode.setRightBinaryNode(null);
             }
@@ -85,17 +82,14 @@ public class BinaryStringTree
             {
                 parentBinaryNode.setLeftBinaryNode(null);
             }
-            else if(binaryNodeToDelete == root)
-            {
-                root = null;
-            }
             return true;
         }
 
-
+        // Linkes und rechtes Kind des zu löschenden Knoten abfragen
         BinaryNode rightChildBinaryNode = binaryNodeToDelete.getRightBinaryNode();
         BinaryNode leftChildBinaryNode = binaryNodeToDelete.getLeftBinaryNode();
 
+        // Ist der zu löschende Knoten der linke Knoten des Elternknotens?
         boolean isLeftNode = parentBinaryNode.getLeftBinaryNode() == binaryNodeToDelete;
 
         // Der Knoten hat nur 1 Kind -> Den zu löschenden Knoten durch sein Kind ersetzen
@@ -130,6 +124,9 @@ public class BinaryStringTree
             return true;
         }
 
+        // Der zu löschende Knoten hat zwei Kinder
+        // Der rechte Teilbaum des zu löschenden Knotens wird an den rechtesten Knoten des linken Kindknoten gehangen
+
         if(binaryNodeToDelete == root)
         {
             getMostRightNode(root.getLeftBinaryNode()).setRightBinaryNode(root.getRightBinaryNode());
@@ -137,11 +134,8 @@ public class BinaryStringTree
             return true;
         }
 
-        // Der Knoten hat 2 Kinder
         if(isLeftNode)
         {
-
-
             getMostRightNode(binaryNodeToDelete.getLeftBinaryNode()).setRightBinaryNode(binaryNodeToDelete.getRightBinaryNode());
             parentBinaryNode.setLeftBinaryNode(binaryNodeToDelete.getLeftBinaryNode());
             return true;
@@ -154,6 +148,11 @@ public class BinaryStringTree
         }
     }
 
+    /**
+     * Ermittelt den rechtesten Knoten eines Knoten
+     * @param node Der Knoten, für den der rechteste Knoten ermittelt werden soll
+     * @return Der rechteste Knoten
+     */
     private BinaryNode getMostRightNode(BinaryNode node)
     {
         BinaryNode current = node;
@@ -165,6 +164,11 @@ public class BinaryStringTree
         return current;
     }
 
+    /**
+     * Ermittelt den linksten Knoten eines Knoten
+     * @param node Der Knoten, für den der linksten Knoten ermittelt werden soll
+     * @return Der linkste Knoten
+     */
     private BinaryNode getMostLeftNode(BinaryNode node)
     {
         BinaryNode current = node;
