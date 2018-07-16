@@ -1,7 +1,5 @@
 package Model;
 
-import javax.xml.soap.Node;
-
 public class BinaryStringTree
 {
     private BinaryNode root;
@@ -55,16 +53,16 @@ public class BinaryStringTree
             }
         } while(!currentBinaryNode.isLeaf());
 
-        // Nichts gefunden, abbrechen
-        if(binaryNodeToDelete == null)
-        {
-            return false;
-        }
-
         // Wenn zuvor keiner gefunden wurde, ist der letzte geprüfte Knoten evtl. der zu löschende
         if(currentBinaryNode.getData().equals(valueToDelete))
         {
             binaryNodeToDelete = currentBinaryNode;
+        }
+
+        // Nichts gefunden, abbrechen
+        if(binaryNodeToDelete == null)
+        {
+            return false;
         }
 
         // Der zu löschende Knoten ist ein Blatt -> hat keine Kinder, kann einfach so gelöscht werden

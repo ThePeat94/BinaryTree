@@ -12,13 +12,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
 import java.io.File;
 
 public class Controller {
@@ -27,7 +26,7 @@ public class Controller {
     public Button btnInsertValue;
     public Button btnDeleteValue;
     public BorderPane bpMain;
-    public AnchorPane spTreeView;
+    public Pane pTreeView;
 
     final private double PANE_WIDTH = 800;
     final private double PANE_HEIGHT = 700;
@@ -44,7 +43,7 @@ public class Controller {
 
     private void renderBinaryTree()
     {
-        spTreeView.getChildren().clear();
+        pTreeView.getChildren().clear();
 
         if(bst.getRoot() != null)
             renderNode(bst.getRoot(), 0, 1, 1,null);
@@ -73,12 +72,12 @@ public class Controller {
 
         double offsetX = (PANE_WIDTH/(maxElementCount+1)) * rowId;
 
-        spTreeView.getChildren().add(circle);
+        pTreeView.getChildren().add(circle);
         circle.setLayoutX(offsetX);
         circle.setLayoutY(50 + (100*treeDepth));
 
         Label circleText = new Label(binaryNodeToRender.getData());
-        spTreeView.getChildren().add(circleText);
+        pTreeView.getChildren().add(circleText);
         circleText.setLayoutX(circle.getLayoutX() - circle.getRadius()/2);
         circleText.setLayoutY(circle.getLayoutY() - circle.getRadius()/2);
 
@@ -114,7 +113,7 @@ public class Controller {
     private void connectCircles(Circle parent, Circle child)
     {
         Line connectingLine = new Line();
-        spTreeView.getChildren().add(0, connectingLine);
+        pTreeView.getChildren().add(0, connectingLine);
 
         connectingLine.setStartX(parent.getLayoutX());
         connectingLine.setStartY(parent.getLayoutY() + parent.getRadius());
